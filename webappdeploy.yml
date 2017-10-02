@@ -1,0 +1,8 @@
+ - hosts: webserver
+   user: ansible
+   sudo: yes 
+   connection: ssh 
+   gather_facts: no 
+   tasks:
+   - name: Copy from the  les directory test  le
+      action: copy src= /home/ansible/page*.html dest=/var/www/html/ owner=riyaz group=riyaz mode=0777 backup=yes

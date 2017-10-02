@@ -1,0 +1,16 @@
+--- # My First YAML playbook
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars_prompt:
+    - name: pkgname
+      prompt: Enter the package to install
+  tasks:
+     - name: Install HTTPD server on centos 7
+       apt: name=apache2 state=installed
+       notify: Restart HTTPD
+  handlers:
+      - name: Restart HTTPD
+        action: service name=apache2 state=restarted

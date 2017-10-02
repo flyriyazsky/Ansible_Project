@@ -1,0 +1,15 @@
+--- # Gather Ec2 facts from remote host
+- hosts: aws
+  remote_user: ec2-user
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+  tasks: 
+  - name: Gather facts
+    action: ec2_facts
+    register: result
+  - name: Display results in JSON
+    debug: var=result
+#    debug: msg='{{ ansible_ec2_instance_type }}'
+#    debug: msg="This is t2.micro instance"
+#    when: ansible_ec2_instance_type == 't2.micro'

@@ -1,0 +1,12 @@
+--- # ACL MODULE EXAMPLE
+ - hosts: webserver
+   user: ansible
+   sudo: yes 
+   connection: ssh 
+   gather_facts: no
+ 
+   tasks:
+      - name: Get ACL Information on the /home/ansible/test.txt
+        acl: name=/home/ansible/test.txt entity=ansible etype=user permissions="rw" state=present 
+        register: aclinfo
+      - debug: var=aclinfo

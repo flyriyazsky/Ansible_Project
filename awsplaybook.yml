@@ -1,0 +1,11 @@
+- hosts: aws
+  remote_user: ec2-user
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+  tasks:
+  - name: Excecute ls command
+    shell: ls -la ~
+    register: result
+  - name: Display results in JSON
+    debug: var=result

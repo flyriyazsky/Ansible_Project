@@ -1,0 +1,14 @@
+--- # AT MODULE EXAMPLE 
+- hosts: webserver
+  user: ansible
+  connection: ssh 
+  gather_facts: yes
+  tasks:
+
+   - copy:
+      src: /tmp/page1.html
+      dest: /var/www/html/
+      owner: ansible
+      group: ansible
+      mode: 0777
+      backup: yes

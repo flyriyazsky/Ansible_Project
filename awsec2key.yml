@@ -1,0 +1,17 @@
+--- # EC2_KEY MODULE EXAMPLE
+- hosts: aws
+  connection: ssh
+  remote_user: ec2-user
+  become: yes
+  gather_facts: yes
+  vars_files:
+  - files/awscreds.yml
+  tasks:
+  - name: Create a New Key Pair - MyKeyPairTestAWS
+    ec2_key:
+      aws_access_key: "{{ aws_id }}"
+      aws_secret_key: "{{ aws_key }}"
+      name: MyKeyPairTestAWS
+      region: ap-south-1
+      state: absent
+

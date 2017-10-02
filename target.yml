@@ -1,0 +1,14 @@
+--- #Playbook with variables with targets
+- hosts: webserver
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  sudo: yes
+  vars: 	
+        control_server: 192.168.56.220
+        web_root: /var/ww/html
+        myuser: root
+        updatemyfile: 455
+  tasks:
+    - name: Installs Tomcat web server
+      apt: pkg=tomcat7 state=installed update_cache=true

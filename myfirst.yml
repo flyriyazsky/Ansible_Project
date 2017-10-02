@@ -1,0 +1,5 @@
+- hosts: webserver
+  sudo: yes
+  tasks:
+    - name: Installs Tomcat web server
+      apt: pkg=tomcat7 state=installed update_cache=true

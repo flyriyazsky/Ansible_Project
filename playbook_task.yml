@@ -1,0 +1,20 @@
+--- #Playbook with variables with targets along with task
+- hosts: webserver
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  sudo: yes
+  vars: 	
+        control_server: 192.168.56.220
+        web_root: /var/ww/html
+        myuser: root
+        updatemyfile: 455
+  vars_prompt:
+    - name: Prompt1
+      prompt: do you want to install below task?
+  tasks:
+    - name: Installs logwatch web server
+      apt: pkg=logwatch state=installed update_cache=true
+    - name: Installs htop web server
+      apt: pkg=htop state=installed update_cache=true
+      

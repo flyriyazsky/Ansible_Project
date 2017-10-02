@@ -1,0 +1,10 @@
+- hosts: webserver
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+ tasks:
+    - name: Install Apache Web Server
+      yum: pkg=lynx state=installed update_cache=true
+    - fail: msg="Installation Failed, this is not CentOS or RedHat Host"
+      when: "ansible_os_family != ‘RedHat’"
